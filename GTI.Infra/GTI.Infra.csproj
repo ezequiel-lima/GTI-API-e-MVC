@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GTI.Application\GTI.Application.csproj" />
     <ProjectReference Include="..\GTI.Domain\GTI.Domain.csproj" />
   </ItemGroup>
 

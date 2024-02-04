@@ -1,6 +1,6 @@
-﻿using GTI.Shared.Commands;
+﻿using GTI.Shared.Commands.Interfaces;
 
-namespace GTI.Domain.Commands
+namespace GTI.Domain.Commands.Clientes
 {
     public class CreateClienteCommand : ICommand
     {

@@ -1,9 +1,9 @@
-﻿using GTI.Shared.Commands;
+﻿using GTI.Shared.Commands.Interfaces;
 
 namespace GTI.Shared.Handlers
 {
     public interface IHandler<T> where T : ICommand
     {
-        ICommandResult Handle(T command);
+        Task<ICommandResult> Handle(T command);
     }
 }

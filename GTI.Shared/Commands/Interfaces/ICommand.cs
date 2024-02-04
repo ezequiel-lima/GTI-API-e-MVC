@@ -1,4 +1,4 @@
-﻿namespace GTI.Shared.Commands
+﻿namespace GTI.Shared.Commands.Interfaces
 {
     public interface ICommand
     {
