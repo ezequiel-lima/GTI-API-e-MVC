@@ -1,4 +1,5 @@
-﻿using GTI.Shared.Entities;
+﻿using GTI.Domain.Commands.Clientes;
+using GTI.Shared.Entities;
 
 namespace GTI.Domain.Entities
 {
@@ -30,5 +31,18 @@ namespace GTI.Domain.Entities
         public string Sexo { get; private set; }
         public string EstadoCivil { get; private set; }
         public IList<Endereco> Enderecos {  get; private set; } 
+
+        public void Alterar(UpdateClienteCommand command)
+        {
+            Cpf = command.Cpf;
+            Nome = command.Nome;
+            Rg = command.Rg;
+            DataExpedicao = command.DataExpedicao;
+            OrgaoExpedicao = command.OrgaoExpedicao;
+            Uf = command.Uf;
+            DataDeNascimento = command.DataDeNascimento;
+            Sexo = command.Sexo;
+            EstadoCivil = command.EstadoCivil;
+        }
     }
 }

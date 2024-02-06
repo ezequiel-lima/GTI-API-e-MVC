@@ -5,11 +5,11 @@ using GTI.Shared.Handlers;
 
 namespace GTI.Application.Handlers
 {
-    public class ClienteHandler : IHandler<CreateClienteCommand>
+    public class CreateClienteHandler : IHandler<CreateClienteCommand>
     {
         private readonly IClienteService _clienteService;
 
-        public ClienteHandler(IClienteService clienteService)
+        public CreateClienteHandler(IClienteService clienteService)
         {
             _clienteService = clienteService;
         }

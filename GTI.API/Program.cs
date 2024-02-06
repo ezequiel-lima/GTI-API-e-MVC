@@ -4,10 +4,10 @@ using GTI.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using GTI.Domain.Entities;
 using GTI.Application.Interfaces;
-using GTI.Application.Services.Clientes;
 using GTI.Shared.Handlers;
 using GTI.Application.Handlers;
 using GTI.Domain.Commands.Clientes;
+using GTI.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +58,8 @@ IServiceCollection GetServiceCollection(WebApplicationBuilder builder)
     services.AddScoped<IReadRepository<Cliente>, ApplicationRepository<Cliente>>();
     services.AddScoped<IWriteRepository<Cliente>, ApplicationRepository<Cliente>>();
     services.AddScoped<IClienteService, ClienteService>();
-    services.AddScoped<IHandler<CreateClienteCommand>, ClienteHandler>();
+    services.AddScoped<IHandler<CreateClienteCommand>, CreateClienteHandler>();
+    services.AddScoped<IHandler<UpdateClienteCommand>, UpdateClienteHandler>();
 
     services.AddScoped<IReadRepository<Endereco>, ApplicationRepository<Endereco>>();
     services.AddScoped<IWriteRepository<Endereco>, ApplicationRepository<Endereco>>();
