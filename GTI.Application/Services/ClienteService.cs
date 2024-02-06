@@ -11,26 +11,28 @@ namespace GTI.Application.Services
     {
         private readonly IReadRepository<Cliente> _readRepository;
         private readonly IWriteRepository<Cliente> _writeRepository;
+        private readonly IReadRepository<Endereco> _readEnderecoRepository;
         private readonly IWriteRepository<Endereco> _writeEnderecoRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ClienteService(IReadRepository<Cliente> readRepository, IWriteRepository<Cliente> writeRepository, IUnitOfWork unitOfWork, IWriteRepository<Endereco> writeEnderecoRepository)
+        public ClienteService(IReadRepository<Cliente> readRepository, IWriteRepository<Cliente> writeRepository, IUnitOfWork unitOfWork, IWriteRepository<Endereco> writeEnderecoRepository, IReadRepository<Endereco> readEnderecoRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
             _unitOfWork = unitOfWork;
             _writeEnderecoRepository = writeEnderecoRepository;
+            _readEnderecoRepository = readEnderecoRepository;
         }
 
         public async Task<CommandResult> GetAllClientes()
         {
-            var listaClientes = await _readRepository.FindAll().ToListAsync();
+            var listaClientes = await _readRepository.FindAll().Include(x => x.Enderecos).ToListAsync();
             return new CommandResult(true, "Clientes consultados com sucesso", listaClientes);
         }
 
         public async Task<CommandResult> GetByIdCliente(Guid id)
         {
-            var cliente = await _readRepository.FindByCondition(x => x.Id == id).ToListAsync();
+            var cliente = await _readRepository.FindByCondition(x => x.Id == id).Include(x => x.Enderecos).ToListAsync();
             return new CommandResult(true, "Cliente consultado com sucesso", cliente);
         }
 
@@ -58,7 +60,11 @@ namespace GTI.Application.Services
             Cliente cliente = await _readRepository.FindByCondition(x => x.Id == command.IdClienteExistente).FirstOrDefaultAsync();
             cliente.Alterar(command);
 
+            Endereco endereco = await _readEnderecoRepository.FindByCondition(x => x.Cliente.Id == command.IdClienteExistente).FirstOrDefaultAsync();
+            endereco.Alterar(command.Endereco);
+
             _writeRepository.Update(cliente);
+            _writeEnderecoRepository.Update(endereco);
             await _unitOfWork.CommitAsync();
 
             return new CommandResult(true, "Cliente alterado com sucesso", cliente);

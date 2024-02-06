@@ -1,4 +1,6 @@
-﻿using GTI.Shared.Entities;
+﻿using GTI.Domain.Commands.Clientes;
+using GTI.Domain.Commands.Enderecos;
+using GTI.Shared.Entities;
 using System.Text.Json.Serialization;
 
 namespace GTI.Domain.Entities
@@ -29,5 +31,16 @@ namespace GTI.Domain.Entities
 
         [JsonIgnore]
         public Cliente Cliente { get; private set; }
+
+        public void Alterar(UpdateEnderecoCommand command)
+        {
+            Cep = command.Cep;
+            Logradouro = command.Logradouro;
+            Numero = command.Numero;
+            Complemento = command.Complemento;
+            Bairro = command.Bairro;
+            Cidade = command.Cidade;
+            Uf = command.Uf;
+        }
     }
 }
