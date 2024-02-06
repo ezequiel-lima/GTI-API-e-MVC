@@ -39,11 +39,15 @@ namespace GTI.Application.Services
         public async Task<CommandResult> CreateCliente(CreateClienteCommand command)
         {
             // TODO FAST FAIL VALIDATION
+            command.Validate();
+
+            if (!command.IsValid)
+                return new CommandResult(false, "teste", command.Notifications);
 
             Cliente cliente = new Cliente(command.Cpf, command.Nome, command.Rg, command.DataExpedicao, command.OrgaoExpedicao,
                 command.Uf, command.DataDeNascimento, command.Sexo, command.EstadoCivil);
 
-            Endereco endereco = new Endereco(command.Endereco.Cep, command.Endereco.Logradouro, command.Endereco.Numero, 
+            Endereco endereco = new Endereco(command.Endereco.Cep, command.Endereco.Logradouro, command.Endereco.Numero,
                 command.Endereco.Complemento, command.Endereco.Bairro, command.Endereco.Cidade, command.Endereco.Uf, cliente);
 
             await _writeRepository.AddAsync(cliente);
@@ -75,8 +79,10 @@ namespace GTI.Application.Services
             // TODO FAST FAIL VALIDATION
 
             Cliente cliente = await _readRepository.FindByCondition(x => x.Id == id).FirstOrDefaultAsync();
+            Endereco endereco = await _readEnderecoRepository.FindByCondition(x => x.Cliente.Id == id).FirstOrDefaultAsync();
 
             _writeRepository.Delete(cliente);
+            _writeEnderecoRepository.Delete(endereco);
             await _unitOfWork.CommitAsync();
 
             return new CommandResult(true, "Cliente deletado com sucesso", cliente);

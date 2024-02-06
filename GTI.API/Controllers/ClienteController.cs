@@ -42,7 +42,11 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> PostAsync(CreateClienteCommand command)
         {
             var result = await _createClienteHandler.ExecuteCommand(command);
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpPut("{id}")]
