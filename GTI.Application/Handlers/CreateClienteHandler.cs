@@ -14,7 +14,7 @@ namespace GTI.Application.Handlers
             _clienteService = clienteService;
         }
 
-        public async Task<ICommandResult> Handle(CreateClienteCommand command)
+        public async Task<ICommandResult> ExecuteCommand(CreateClienteCommand command)
         {
             return await _clienteService.CreateCliente(command);
         }

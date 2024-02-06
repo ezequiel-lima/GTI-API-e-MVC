@@ -1,5 +1,6 @@
 ﻿using GTI.Domain.Commands.Clientes;
 using GTI.Shared.Entities;
+using System.Text.Json.Serialization;
 
 namespace GTI.Domain.Entities
 {
@@ -29,7 +30,7 @@ namespace GTI.Domain.Entities
         public string Uf { get; private set; }
         public DateTime DataDeNascimento { get; private set; }
         public string Sexo { get; private set; }
-        public string EstadoCivil { get; private set; }
+        public string EstadoCivil { get; private set; }    
         public IList<Endereco> Enderecos {  get; private set; } 
 
         public void Alterar(UpdateClienteCommand command)

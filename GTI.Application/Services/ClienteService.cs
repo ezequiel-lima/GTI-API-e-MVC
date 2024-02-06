@@ -11,15 +11,17 @@ namespace GTI.Application.Services
     {
         private readonly IReadRepository<Cliente> _readRepository;
         private readonly IWriteRepository<Cliente> _writeRepository;
+        private readonly IWriteRepository<Endereco> _writeEnderecoRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ClienteService(IReadRepository<Cliente> readRepository, IWriteRepository<Cliente> writeRepository, IUnitOfWork unitOfWork)
+        public ClienteService(IReadRepository<Cliente> readRepository, IWriteRepository<Cliente> writeRepository, IUnitOfWork unitOfWork, IWriteRepository<Endereco> writeEnderecoRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
             _unitOfWork = unitOfWork;
+            _writeEnderecoRepository = writeEnderecoRepository;
         }
-     
+
         public async Task<CommandResult> GetAllClientes()
         {
             var listaClientes = await _readRepository.FindAll().ToListAsync();
@@ -39,7 +41,11 @@ namespace GTI.Application.Services
             Cliente cliente = new Cliente(command.Cpf, command.Nome, command.Rg, command.DataExpedicao, command.OrgaoExpedicao,
                 command.Uf, command.DataDeNascimento, command.Sexo, command.EstadoCivil);
 
+            Endereco endereco = new Endereco(command.Endereco.Cep, command.Endereco.Logradouro, command.Endereco.Numero, 
+                command.Endereco.Complemento, command.Endereco.Bairro, command.Endereco.Cidade, command.Endereco.Uf, cliente);
+
             await _writeRepository.AddAsync(cliente);
+            await _writeEnderecoRepository.AddAsync(endereco);
             await _unitOfWork.CommitAsync();
 
             return new CommandResult(true, "Cliente registrado com sucesso", cliente);

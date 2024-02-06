@@ -41,7 +41,7 @@ namespace GTI.API.Controllers
         [ProducesResponseType(typeof(CommandResult), StatusCodes.Status201Created)]
         public async Task<IActionResult> PostAsync(CreateClienteCommand command)
         {
-            var result = await _createClienteHandler.Handle(command);
+            var result = await _createClienteHandler.ExecuteCommand(command);
             return Ok(result);
         }
 
@@ -51,7 +51,7 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> PutAsync(Guid id, UpdateClienteCommand command)
         {
             command.InserirIdClienteExistenteNoCommand(id);
-            var result = await _updateClienteHandler.Handle(command);
+            var result = await _updateClienteHandler.ExecuteCommand(command);
             return Ok(result);
         }
 

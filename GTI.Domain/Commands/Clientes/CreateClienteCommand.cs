@@ -1,4 +1,5 @@
-﻿using GTI.Shared.Commands.Interfaces;
+﻿using GTI.Domain.Commands.Enderecos;
+using GTI.Shared.Commands.Interfaces;
 
 namespace GTI.Domain.Commands.Clientes
 {
@@ -13,6 +14,7 @@ namespace GTI.Domain.Commands.Clientes
         public DateTime DataDeNascimento { get; set; }
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
+        public CreateEnderecoCommand Endereco { get; set; }
 
         public void Validate()
         {
