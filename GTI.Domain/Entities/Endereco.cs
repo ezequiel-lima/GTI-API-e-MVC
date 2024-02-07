@@ -1,5 +1,4 @@
-﻿using GTI.Domain.Commands.Clientes;
-using GTI.Domain.Commands.Enderecos;
+﻿using GTI.Domain.Commands.Enderecos;
 using GTI.Shared.Entities;
 using System.Text.Json.Serialization;
 

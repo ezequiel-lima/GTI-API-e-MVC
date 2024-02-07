@@ -20,7 +20,11 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await _enderecoService.GetAllEnderecos();
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
     }
 }

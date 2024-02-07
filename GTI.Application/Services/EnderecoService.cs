@@ -9,20 +9,20 @@ namespace GTI.Application.Services
     public class EnderecoService : IEnderecoService
     {
         private readonly IReadRepository<Endereco> _readRepository;
-        private readonly IWriteRepository<Endereco> _writeRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public EnderecoService(IReadRepository<Endereco> readRepository, IWriteRepository<Endereco> writeRepository, IUnitOfWork unitOfWork)
+        public EnderecoService(IReadRepository<Endereco> readRepository)
         {
             _readRepository = readRepository;
-            _writeRepository = writeRepository;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<CommandResult> GetAllEnderecos()
         {
-            var enderecos = await _readRepository.FindAll().ToListAsync();
-            return new CommandResult(true, "Enderecos consultados com sucesso", enderecos);
+            var listaEnderecos = await _readRepository.FindAll().ToListAsync();
+
+            if (listaEnderecos is null || listaEnderecos.Count == 0)
+                return new CommandResult(false, "Falha ao consultar enderecos");
+
+            return new CommandResult(true, "Enderecos consultados com sucesso", listaEnderecos);
         }
     }
 }

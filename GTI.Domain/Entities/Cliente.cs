@@ -1,6 +1,5 @@
 ﻿using GTI.Domain.Commands.Clientes;
 using GTI.Shared.Entities;
-using System.Text.Json.Serialization;
 
 namespace GTI.Domain.Entities
 {
