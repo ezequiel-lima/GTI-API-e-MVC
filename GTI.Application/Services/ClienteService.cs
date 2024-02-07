@@ -47,9 +47,12 @@ namespace GTI.Application.Services
         public async Task<CommandResult> CreateCliente(CreateClienteCommand command)
         {
             command.Validate();
+            command.Endereco.Validate();
 
-            if (!command.IsValid)
-                return new CommandResult(false, "Falha ao registrar cliente", command.Notifications);
+            var notificacoes = command.Notifications.Concat(command.Endereco.Notifications);
+
+            if (!command.IsValid || !command.Endereco.IsValid)
+                return new CommandResult(false, "Falha ao registrar cliente", notificacoes);
 
             Cliente cliente = new Cliente(command.Cpf, command.Nome, command.Rg, command.DataExpedicao, command.OrgaoExpedicao,
                 command.Uf, command.DataDeNascimento, command.Sexo, command.EstadoCivil);
@@ -67,9 +70,12 @@ namespace GTI.Application.Services
         public async Task<CommandResult> UpdateCliente(UpdateClienteCommand command)
         {
             command.Validate();
+            command.Endereco.Validate();
 
-            if (!command.IsValid)
-                return new CommandResult(false, "Falha ao alterar cliente", command.Notifications);
+            var notificacoes = command.Notifications.Concat(command.Endereco.Notifications);
+
+            if (!command.IsValid || !command.Endereco.IsValid)
+                return new CommandResult(false, "Falha ao alterar cliente", notificacoes);
 
             var cliente = await _readRepository.FindByCondition(x => x.Id == command.IdClienteExistente).FirstOrDefaultAsync();
             if (cliente is null)

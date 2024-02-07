@@ -1,8 +1,9 @@
-﻿using GTI.Shared.Commands.Interfaces;
+﻿using GTI.Domain.Contracts.Enderecos;
+using GTI.Shared.Commands;
 
 namespace GTI.Domain.Commands.Enderecos
 {
-    public class CreateEnderecoCommand : ICommand
+    public class CreateEnderecoCommand : BaseCommand
     {
         public string Cep { get; set; }
         public string Logradouro { get; set; }
@@ -12,9 +13,9 @@ namespace GTI.Domain.Commands.Enderecos
         public string Cidade { get; set; }
         public string Uf { get; set; }
 
-        public void Validate()
+        public override void Validate()
         {
-            throw new NotImplementedException();
+            AddNotifications(new CreateEnderecoContract(this));
         }
     }
 }
