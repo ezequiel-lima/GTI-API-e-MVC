@@ -1,9 +1,10 @@
 ﻿using GTI.Domain.Commands.Enderecos;
-using GTI.Shared.Commands.Interfaces;
+using GTI.Domain.Contracts.Clientes;
+using GTI.Shared.Commands;
 
 namespace GTI.Domain.Commands.Clientes
 {
-    public class UpdateClienteCommand : ICommand
+    public class UpdateClienteCommand : BaseCommand
     {
         public Guid IdClienteExistente { get; private set; }
 
@@ -18,9 +19,9 @@ namespace GTI.Domain.Commands.Clientes
         public string EstadoCivil { get; set; }
         public UpdateEnderecoCommand Endereco { get; set; }
 
-        public void Validate()
+        public override void Validate()
         {
-            throw new NotImplementedException();
+            AddNotifications(new UpdateClienteContract(this));
         }
 
         public void InserirIdClienteExistenteNoCommand(Guid id)

@@ -26,7 +26,11 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await _clienteService.GetAllClientes();
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpGet("{id}")]
@@ -34,7 +38,11 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             var result = await _clienteService.GetByIdCliente(id);
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpPost]
@@ -56,7 +64,11 @@ namespace GTI.API.Controllers
         {
             command.InserirIdClienteExistenteNoCommand(id);
             var result = await _updateClienteHandler.ExecuteCommand(command);
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpDelete("{id}")]
@@ -65,7 +77,11 @@ namespace GTI.API.Controllers
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var result = await _clienteService.DeleteCliente(id);
-            return Ok(result);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
     }
 }
