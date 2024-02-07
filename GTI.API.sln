@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.API", "GTI.API\GTI.API.csproj", "{0F97BFD5-A56A-4B77-94FA-EF1F8A3B4691}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTI.API", "GTI.API\GTI.API.csproj", "{0F97BFD5-A56A-4B77-94FA-EF1F8A3B4691}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.Application", "GTI.Application\GTI.Application.csproj", "{BC46E3AF-40BC-46DB-B38A-3810F8ACC946}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTI.Application", "GTI.Application\GTI.Application.csproj", "{BC46E3AF-40BC-46DB-B38A-3810F8ACC946}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.Domain", "GTI.Domain\GTI.Domain.csproj", "{1AF26586-1DF2-4BA2-A963-699D3CD7EF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTI.Domain", "GTI.Domain\GTI.Domain.csproj", "{1AF26586-1DF2-4BA2-A963-699D3CD7EF3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.Infra", "GTI.Infra\GTI.Infra.csproj", "{0AE572DA-FBCC-4859-9073-77740F776706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTI.Infra", "GTI.Infra\GTI.Infra.csproj", "{0AE572DA-FBCC-4859-9073-77740F776706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.Shared", "GTI.Shared\GTI.Shared.csproj", "{F16C6479-0DC7-4064-A44E-32E5C340E449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTI.Shared", "GTI.Shared\GTI.Shared.csproj", "{F16C6479-0DC7-4064-A44E-32E5C340E449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTI.MVC", "GTI.MVC\GTI.MVC.csproj", "{8EA00199-13D9-4089-AC63-D7B468F41254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F16C6479-0DC7-4064-A44E-32E5C340E449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16C6479-0DC7-4064-A44E-32E5C340E449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16C6479-0DC7-4064-A44E-32E5C340E449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA00199-13D9-4089-AC63-D7B468F41254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA00199-13D9-4089-AC63-D7B468F41254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA00199-13D9-4089-AC63-D7B468F41254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA00199-13D9-4089-AC63-D7B468F41254}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

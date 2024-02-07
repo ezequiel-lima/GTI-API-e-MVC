@@ -26,6 +26,8 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseCors();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
@@ -46,6 +48,17 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(policy =>
+        {
+            policy.AllowAnyMethod()
+            .AllowAnyOrigin()
+            .AllowAnyHeader();
+        });
+    });
+
     var services = GetServiceCollection(builder);
 }
 
