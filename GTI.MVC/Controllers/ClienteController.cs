@@ -1,5 +1,4 @@
 ﻿using GTI.MVC.Models;
-using GTI.MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
@@ -20,7 +19,7 @@ namespace GTI.MVC.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<Cliente> listaClientes = new List<Cliente>();
+            List<ClienteViewModel> listaClientes = new List<ClienteViewModel>();
             HttpResponseMessage response = _httpClient.GetAsync(baseAddress + "Cliente").Result;
 
             if (response.IsSuccessStatusCode)
@@ -33,7 +32,7 @@ namespace GTI.MVC.Controllers
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 };
 
-                var result = JsonSerializer.Deserialize<ResultViewModel<List<Cliente>>>(data, options);
+                var result = JsonSerializer.Deserialize<ResultViewModel<List<ClienteViewModel>>>(data, options);
                 listaClientes = result?.Data;
             }
 

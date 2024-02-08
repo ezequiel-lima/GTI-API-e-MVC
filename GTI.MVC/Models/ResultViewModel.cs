@@ -1,4 +1,4 @@
-﻿namespace GTI.MVC.ViewModels
+﻿namespace GTI.MVC.Models
 {
     public class ResultViewModel<T>
     {
