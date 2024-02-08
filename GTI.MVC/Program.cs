@@ -1,7 +1,20 @@
+using AutoMapper;
+using GTI.MVC.Dtos;
+using GTI.MVC.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var mapperConfig = new MapperConfiguration(cfg =>
+{
+    cfg.CreateMap<ClienteViewModel, ClienteDto>()
+        .ForMember(dest => dest.Endereco, opt => opt.MapFrom(src => src.Enderecos.FirstOrDefault()));
+});
+
+var mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

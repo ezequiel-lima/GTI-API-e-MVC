@@ -1,8 +1,9 @@
-﻿namespace GTI.MVC.Models
+﻿using GTI.MVC.Models;
+
+namespace GTI.MVC.Dtos
 {
-    public class ClienteViewModel
+    public class ClienteDto
     {
-        public Guid Id { get; set; }
         public string Cpf { get; set; }
         public string Nome { get; set; }
         public string Rg { get; set; }
@@ -12,6 +13,6 @@
         public DateTime DataDeNascimento { get; set; }
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
-        public List<EnderecoViewModel> Enderecos { get; set; }
+        public EnderecoViewModel Endereco { get; set; }
     }
 }
