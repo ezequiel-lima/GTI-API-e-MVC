@@ -1,4 +1,4 @@
-﻿@model GTI.MVC.Models.Cliente
+﻿@model GTI.MVC.Models.ClienteViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -56,6 +56,35 @@
                 <label asp-for="EstadoCivil" class="control-label"></label>
                 <input asp-for="EstadoCivil" class="form-control" />
                 <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+            </div>
+            <h3>Endereço</h3>
+            <div class="form-group">
+                <label asp-for="Endereco.Cep">CEP:</label>
+                <input asp-for="Endereco.Cep" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Logradouro">Rua:</label>
+                <input asp-for="Endereco.Logradouro" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Numero">Número:</label>
+                <input asp-for="Endereco.Numero" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Complemento">Complemento:</label>
+                <input asp-for="Endereco.Complemento" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Bairro">Bairro:</label>
+                <input asp-for="Endereco.Bairro" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Cidade">Cidade:</label>
+                <input asp-for="Endereco.Cidade" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Uf">Uf:</label>
+                <input asp-for="Endereco.Uf" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

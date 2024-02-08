@@ -46,12 +46,12 @@ namespace GTI.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Cliente cliente)
+        public async Task<IActionResult> Create(ClienteViewModel cliente)
         {
             var jsonCliente = JsonSerializer.Serialize(cliente);
 
             var content = new StringContent(jsonCliente, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpClient.PostAsync("Cliente", content);
+            HttpResponseMessage response = await _httpClient.PostAsync(baseAddress + "Cliente", content);
 
             if (response.IsSuccessStatusCode)
             {
