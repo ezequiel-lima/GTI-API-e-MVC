@@ -66,7 +66,7 @@ namespace GTI.MVC.Controllers
 
             return View(cliente);
         }
-      
+
         public IActionResult Edit(Guid id)
         {
             ClienteViewModel cliente = new ClienteViewModel();
@@ -75,12 +75,7 @@ namespace GTI.MVC.Controllers
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                };
+                JsonSerializerOptions options = ConfigureJsonSerializer();
 
                 var result = JsonSerializer.Deserialize<ResultViewModel<List<ClienteViewModel>>>(data, options);
                 cliente = result.Data[0];
@@ -105,6 +100,56 @@ namespace GTI.MVC.Controllers
             }
 
             return View(cliente);
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            ClienteViewModel cliente = new ClienteViewModel();
+            HttpResponseMessage response = _httpClient.GetAsync(baseAddress + $"Cliente/{id}").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                JsonSerializerOptions options = ConfigureJsonSerializer();
+
+                var result = JsonSerializer.Deserialize<ResultViewModel<List<ClienteViewModel>>>(data, options);
+                cliente = result.Data[0];
+            }
+
+            return View(cliente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            await _httpClient.DeleteAsync(baseAddress + $"Cliente/{id}");
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(Guid id)
+        {
+            ClienteViewModel cliente = new ClienteViewModel();
+            HttpResponseMessage response = _httpClient.GetAsync(baseAddress + $"Cliente/{id}").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                JsonSerializerOptions options = ConfigureJsonSerializer();
+
+                var result = JsonSerializer.Deserialize<ResultViewModel<List<ClienteViewModel>>>(data, options);
+                cliente = result.Data[0];
+            }
+
+            return View(cliente);
+        }
+
+        private static JsonSerializerOptions ConfigureJsonSerializer()
+        {
+            return new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
         }
     }
 }
