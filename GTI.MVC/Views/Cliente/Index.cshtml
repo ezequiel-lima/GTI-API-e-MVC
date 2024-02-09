@@ -4,40 +4,40 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista de Clientes</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary" asp-action="Create">Cadastrar novo cliente</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cpf)
+                CPF
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rg)
+                RG
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataExpedicao)
+                Data de Expedição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrgaoExpedicao)
+                Orgão de Expedição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Uf)
+                UF
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataDeNascimento)
+                Data de Nascimento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sexo)
+                Sexo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EstadoCivil)
+                Estado Civil
             </th>
             <th></th>
         </tr>
@@ -74,9 +74,9 @@
                     @Html.DisplayFor(modelItem => item.EstadoCivil)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Deletar", "Delete", new { id = item.Id /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
