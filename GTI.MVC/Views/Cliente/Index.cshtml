@@ -56,7 +56,10 @@
                     @Html.DisplayFor(modelItem => item.Rg)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DataExpedicao)
+                    @if (item.DataExpedicao != DateTime.MinValue)
+                    {
+                        @Html.DisplayFor(modelItem => item.DataExpedicao)
+                    }
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.OrgaoExpedicao)

@@ -16,7 +16,7 @@ namespace GTI.MVC.Models
         [Required(ErrorMessage = "O Número não pode ser nulo ou vazio.")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "deve conter apenas números.")]
         public string Numero { get; set; }
-        public string Complemento { get; set; }
+        public string? Complemento { get; set; }
 
         [Required(ErrorMessage = "O Bairro não pode ser nulo ou vazio.")]
         public string Bairro { get; set; }

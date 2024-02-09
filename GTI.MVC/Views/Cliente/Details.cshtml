@@ -32,7 +32,10 @@
             Data de Expedição
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataExpedicao)
+            @if (Model.DataExpedicao != DateTime.MinValue)
+            {
+                @Html.DisplayFor(model => model.DataExpedicao)
+            }
         </dd>
         <dt class = "col-sm-2">
             Orgão de Expedição

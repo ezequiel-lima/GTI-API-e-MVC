@@ -22,7 +22,8 @@ namespace GTI.Infra.Mappings
             builder.Property(x => x.Numero)
                 .IsRequired();
 
-            builder.Property(x => x.Complemento);
+            builder.Property(x => x.Complemento)
+                .IsRequired(false);
 
             builder.Property(x => x.Bairro)
                 .IsRequired();

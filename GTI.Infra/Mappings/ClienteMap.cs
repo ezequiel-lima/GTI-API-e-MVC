@@ -19,10 +19,17 @@ namespace GTI.Infra.Mappings
             builder.Property(x => x.Nome)
                 .IsRequired();
 
-            builder.Property(x => x.Rg);
-            builder.Property(x => x.DataExpedicao);
-            builder.Property(x => x.OrgaoExpedicao);
-            builder.Property(x => x.Uf);
+            builder.Property(x => x.Rg)
+                .IsRequired(false);
+
+            builder.Property(x => x.DataExpedicao)
+                .IsRequired(false);
+
+            builder.Property(x => x.OrgaoExpedicao)
+                .IsRequired(false);
+
+            builder.Property(x => x.Uf)
+                .IsRequired(false);
 
             builder.Property(x => x.DataDeNascimento)
                 .IsRequired();
