@@ -92,46 +92,54 @@
             <div class="row mb-1">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Cep">CEP *</label>
+                        <label asp-for="Enderecos[0].Cep" class="control-label">CEP *</label>
                         <input asp-for="Enderecos[0].Cep" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Cep" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Logradouro">Rua *</label>
+                        <label asp-for="Enderecos[0].Logradouro" class="control-label">Rua *</label>
                         <input asp-for="Enderecos[0].Logradouro" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Logradouro" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Numero">Número *</label>
+                        <label asp-for="Enderecos[0].Numero" class="control-label">Número *</label>
                         <input asp-for="Enderecos[0].Numero" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Numero" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Complemento">Complemento </label>
+                        <label asp-for="Enderecos[0].Complemento" class="control-label">Complemento </label>
                         <input asp-for="Enderecos[0].Complemento" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Complemento" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Bairro">Bairro *</label>
+                        <label asp-for="Enderecos[0].Bairro" class="control-label">Bairro *</label>
                         <input asp-for="Enderecos[0].Bairro" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Bairro" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Cidade">Cidade *</label>
+                        <label asp-for="Enderecos[0].Cidade" class="control-label">Cidade *</label>
                         <input asp-for="Enderecos[0].Cidade" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Cidade" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-1 mb-3">
                     <div class="form-group">
-                        <label asp-for="Enderecos[0].Uf">UF *</label>
+                        <label asp-for="Enderecos[0].Uf" class="control-label">UF *</label>
                         <input asp-for="Enderecos[0].Uf" class="form-control" />
+                        <span asp-validation-for="Enderecos[0].Uf" class="text-danger"></span>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <input type="submit" value="Atualizar" class="btn btn-primary" />
                 </div>
