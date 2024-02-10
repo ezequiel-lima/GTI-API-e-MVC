@@ -9,7 +9,7 @@ O projeto MVC foi desenvolvido como uma interface de usuário para interagir com
 ## Demonstração 
 
 Tela de cadastro de um cliente
-![image](https://github.com/ezequiel-lima/GTI-Api/assets/81567476/3fae7d36-f00a-426c-b50a-08d57505ff89)
+![image](https://github.com/ezequiel-lima/GTI-API-e-MVC/assets/81567476/a4be56e3-b7f2-4c34-bbb7-5c84a936ebea)
 
 Endpoints
 ![image](https://github.com/ezequiel-lima/GTI-Api/assets/81567476/88df38b6-0c11-4bbd-a6c2-ebbfe0a6ca1d)
