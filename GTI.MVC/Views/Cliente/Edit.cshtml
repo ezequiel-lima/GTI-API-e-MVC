@@ -1,4 +1,5 @@
-﻿@model GTI.MVC.Models.ClienteViewModel
+﻿@using GTI.MVC.Enums
+@model GTI.MVC.Models.ClienteViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -49,14 +50,22 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="OrgaoExpedicao" class="control-label">Orgão Expedição</label>
-                        <input asp-for="OrgaoExpedicao" class="form-control" />
+                        @Html.DropDownListFor(model => model.OrgaoExpedicao, Enum.GetValues(typeof(EOrgaoExpedicao)).Cast<EOrgaoExpedicao>().Select(v => new SelectListItem
+                   {
+                       Text = v.ToString(),
+                       Value = v.ToString()
+                   }), "--- Opções --- ▼", new { @class = "form-control" })
                         <span asp-validation-for="OrgaoExpedicao" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label asp-for="Uf" class="control-label">UF Expedição</label>
-                        <input asp-for="Uf" class="form-control" />
+                        @Html.DropDownListFor(model => model.Uf, Enum.GetValues(typeof(EUF)).Cast<EUF>().Select(v => new SelectListItem
+                   {
+                       Text = v.ToString(),
+                       Value = v.ToString()
+                   }), "--- Opções --- ▼", new { @class = "form-control" })
                         <span asp-validation-for="Uf" class="text-danger"></span>
                     </div>
                 </div>
@@ -73,14 +82,24 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label asp-for="Sexo" class="control-label">Sexo *</label>
-                        <input asp-for="Sexo" class="form-control" />
+                        <select asp-for="Sexo" class="form-control">
+                            <option value="" disabled selected>--- Opções --- ▼</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
                         <span asp-validation-for="Sexo" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label asp-for="EstadoCivil" class="control-label">Estado Civil *</label>
-                        <input asp-for="EstadoCivil" class="form-control" />
+                        <select asp-for="EstadoCivil" class="form-control">
+                            <option value="" disabled selected>--- Opções --- ▼</option>
+                            <option value="Solteiro(a)">Solteiro(a)</option>
+                            <option value="Casado(a)">Casado(a)</option>
+                            <option value="Viúvo(a">Viúvo(a)</option>
+                            <option value="Divorciado(a)">Divorciado(a)</option>
+                        </select>
                         <span asp-validation-for="EstadoCivil" class="text-danger"></span>
                     </div>
                 </div>
@@ -135,7 +154,11 @@
                 <div class="col-md-1 mb-3">
                     <div class="form-group">
                         <label asp-for="Enderecos[0].Uf" class="control-label">UF *</label>
-                        <input asp-for="Enderecos[0].Uf" class="form-control" />
+                        @Html.DropDownListFor(model => model.Enderecos[0].Uf, Enum.GetValues(typeof(EUF)).Cast<EUF>().Select(v => new SelectListItem
+                   {
+                       Text = v.ToString(),
+                       Value = v.ToString()
+                   }), "--- Opções --- ▼", new { @class = "form-control" })
                         <span asp-validation-for="Enderecos[0].Uf" class="text-danger"></span>
                     </div>
                 </div>
