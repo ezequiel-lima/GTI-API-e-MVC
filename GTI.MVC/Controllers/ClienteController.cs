@@ -49,13 +49,11 @@ namespace GTI.MVC.Controllers
             return View();
         }
 
-        [HttpPost]
         public async Task<IActionResult> Create(ClienteViewModel cliente)
         {
             var clienteParaEnviar = _mapper.Map<ClienteDto>(cliente);
 
             var jsonCliente = JsonSerializer.Serialize(clienteParaEnviar);
-
             var content = new StringContent(jsonCliente, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PostAsync(baseAddress + "Cliente", content);
 
@@ -64,9 +62,12 @@ namespace GTI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            AddNotificationsError(response);
+
             return View(cliente);
         }
 
+        [HttpGet]
         public IActionResult Edit(Guid id)
         {
             ClienteViewModel cliente = new ClienteViewModel();
@@ -84,7 +85,6 @@ namespace GTI.MVC.Controllers
             return View(cliente);
         }
 
-        [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ClienteViewModel cliente)
         {
             var clienteParaEnviar = _mapper.Map<ClienteDto>(cliente);
@@ -99,9 +99,12 @@ namespace GTI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            AddNotificationsError(response);
+
             return View(cliente);
         }
 
+        [HttpGet]
         public IActionResult Delete(Guid id)
         {
             ClienteViewModel cliente = new ClienteViewModel();
@@ -119,13 +122,13 @@ namespace GTI.MVC.Controllers
             return View(cliente);
         }
 
-        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             await _httpClient.DeleteAsync(baseAddress + $"Cliente/{id}");
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public IActionResult Details(Guid id)
         {
             ClienteViewModel cliente = new ClienteViewModel();
@@ -150,6 +153,18 @@ namespace GTI.MVC.Controllers
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
+        }
+
+        private void AddNotificationsError(HttpResponseMessage response)
+        {
+            string data = response.Content.ReadAsStringAsync().Result;
+            JsonSerializerOptions options = ConfigureJsonSerializer();
+            var result = JsonSerializer.Deserialize<ResultViewModel<List<NotificationsViewModel>>>(data, options);
+
+            foreach (var notification in result.Data)
+            {
+                ModelState.AddModelError(notification.Key, notification.Message);
+            }
         }
     }
 }
